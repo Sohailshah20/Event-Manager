@@ -18,22 +18,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Climate.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Climate : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
     val CITY: String = "hyderabad,in"
     val API: String = "3db2810c89f9fcabb232ad73deb4046e"
     val a = view?.findViewById<ProgressBar>(R.id.loader)
@@ -42,10 +28,7 @@ class Climate : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -104,9 +87,9 @@ class Climate : Fragment() {
                 "Updated at: " + SimpleDateFormat("dd/MM/yyyy hh:mm a", java.util.Locale.ENGLISH).format(
                     Date(updatedAt * 1000)
                 )
-            val temp = main.getString("temp") + "°C"
-            val tempMin = "Min Temp: " + main.getString("temp_min") + "°C"
-            val tempMax = "Max Temp: " + main.getString("temp_max") + "°C"
+            val temp = main.getString("temp")
+            val tempMin = "Min: " + main.getString("temp_min") + "°"
+            val tempMax = "Max: " + main.getString("temp_max") + "°"
             val pressure = main.getString("pressure")
             val humidity = main.getString("humidity")
             val sunrise: Long = sys.getLong("sunrise")
@@ -184,25 +167,4 @@ class Climate : Fragment() {
     }
 
 
-
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Climate.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Climate().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }
